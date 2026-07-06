@@ -23,7 +23,9 @@ on:
       environment:
         description: "Environment to run tests against"
         type: environment
-        required: true
+        required: false
+  repository_dispatch:
+    types: [event1, event2]
 
 jobs:
   MyFirstJob:
