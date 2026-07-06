@@ -12,4 +12,4 @@ jobs:
           echo "action_state=yellow" >> "$GITHUB_ENV"
       
       - run: |
-          echo "${{ env.action_state }}" # this will output "yello"
+          echo "${{ env.action_state }}" # this will output "yellow"
