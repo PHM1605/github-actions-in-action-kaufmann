@@ -1,0 +1,15 @@
+name: Environment Files
+on:
+  workflow_dispatch
+
+jobs:
+  pass-envi-variable:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set the value
+        id: step_one
+        run: |
+          echo "action_state=yellow" >> "$GITHUB_ENV"
+      
+      - run: |
+          echo "${{ env.action_state }}" # this will output "yello"
