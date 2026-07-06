@@ -9,7 +9,7 @@ jobs:
   job_1:
     strategy:
       fail-fast: false
-      max_parallel: 3
+      max-parallel: 3
       matrix: 
         os_version: [macos-latest, ubuntu-latest]
         node_version: [12, 14, 16]
