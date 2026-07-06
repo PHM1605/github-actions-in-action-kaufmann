@@ -4,51 +4,30 @@ on:
     branches:
     - main
   workflow_dispatch: 
-    inputs:
-      homedrive:
-        description: "The home drive on the machine"
-        required: true
-      logLevel:
-        description: "Log level"
-        default: "warning"
-        type: choice
-        options:
-        - info
-        - warning
-        - debug
-      tag:
-        description: "Apply tag after successful test run"
-        required: true
-        type: boolean
-      environment:
-        description: "Environment to run tests against"
-        type: environment
-        required: false
-  repository_dispatch:
-    types: [event1, event2]
-
+  
 jobs:
-  MyFirstJob:
+  job_1:
     runs-on: ubuntu-latest
-
     steps:
-      - run: echo "Hello World!"
-      - name: Checkout
-        uses: actions/checkout@v7.0.0
-      - name: List files in repository
-        run: |
-          echo "The repository ${{ github.repository }} contains the following files:"
-          tree 
-      - name: Payload
-        run: |
-          echo "Payload ${{toJSON(github.event.client_payload)}}"
-        if: ${{ github.event_name == 'repository_dispatch' }}
-
-
-
-
-
-
+      - run: "echo Job: ${{ github.job }}"
+  job_2:
+    runs_on: ubuntu-latest
+    needs: job_1
+    steps:
+      - run: "echo Job: ${{ github.job }}"
+      
+    job_3:
+      runs_on: ubuntu-latest
+      needs: job_1
+      steps:
+        - run: "echo Job: ${{ github.job}}"
+        
+    job_4:
+      runs_on: ubuntu-latest
+      needs: [job_2, job_3]
+      steps:
+        - run "echo Job: ${{ github.job }}"
+        
 
 
 
