@@ -7,29 +7,19 @@ on:
   
 jobs:
   job_1:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max_parallel: 3
+      matrix: 
+        os_version: [macos-latest, ubuntu-latest]
+        node_version: [12, 14, 16]
+    
+    name: My first list of jobs
+    runs-on: ${{ matrix.os_version }}
     steps:
-      - run: "echo Job: ${{ github.job }}"
-  job_2:
-    runs-on: ubuntu-latest
-    needs: job_1
-    steps:
-      - run: "echo Job: ${{ github.job }}"
-      
-  job_3:
-    runs-on: ubuntu-latest
-    needs: job_1
-    steps:
-      - run: "echo Job: ${{ github.job}}"
-        
-  job_4:
-    runs-on: ubuntu-latest
-    needs: [job_2, job_3]
-    steps:
-      - run: "echo Job: ${{ github.job }}"
-        
-
-
+    - uses: actions/setup-node@v3.6.0
+      with:
+        node-version: ${{ matrix.node_version }}
 
 
 
