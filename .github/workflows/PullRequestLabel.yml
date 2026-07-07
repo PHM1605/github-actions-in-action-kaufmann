@@ -1,0 +1,13 @@
+name: Pull Request Label Adding
+on:
+  pull_request_target
+
+permissions:
+  contents: read # to read labeler.yml
+  pull-requests: write # to label pull-request e.g. add "frontend" tag to that label
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/labeler@v4 # it will read .github/labeler.yml
