@@ -1,0 +1,14 @@
+name: Test Action in Marketplace
+on: [workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run my own container action 
+        id: action
+        uses: PHM1605/my-action-in-action@v1.0.0
+        with:
+          who-to-greet: '@wulfland'
+      - name: Output the answer
+        run: echo "The answer is ${{ steps.action.outputs.answer }}"
