@@ -1,0 +1,11 @@
+name: Self Hosted Demo
+on:
+  workflow_dispatch:
+
+jobs:
+  hello:
+    runs-on: self-hosted
+    steps:
+      - run: echo "Hello from my Mac!"
+      - run: hostname
+      - run: pwd
