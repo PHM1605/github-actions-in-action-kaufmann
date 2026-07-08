@@ -3,9 +3,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  hello:
+  demo:
     runs-on: self-hosted
     steps:
-      - run: echo "Hello from my Mac!"
-      - run: hostname
-      - run: pwd
+      - uses: actions/checkout@v4
+      - run: echo "Hello"
+      - uses: actions/setup-node@v4
+        with: 
+          node-version: 20
+      - run: node --version
