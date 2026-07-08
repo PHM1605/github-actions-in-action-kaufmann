@@ -1,0 +1,19 @@
+# This workflow will NOT run after triggered, but wait for me to triggered
+# => "Environment protecting"
+name: Environment Test
+on: 
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # NOTE: here is production ENVIRONMENT protection
+    environment:
+      name: prod
+    steps:
+      - name: Step 1
+        run: echo "Environment approved!"
+      - name: Step 2
+        run: |
+          echo "Current branch: ${{ github.ref_name }}"
+          echo "Current actor: ${{ github.actor }}"
