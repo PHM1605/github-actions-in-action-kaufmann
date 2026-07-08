@@ -1,0 +1,10 @@
+name: Emepheral With JIT
+on: 
+  workflow_dispatch:
+jobs:
+  hello:
+    runs-on: jitconfig
+    steps:
+      - run: echo "Hello"
+      - run: sleep 5
+      - run: echo "Finished"
