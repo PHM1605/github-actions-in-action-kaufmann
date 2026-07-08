@@ -1,0 +1,10 @@
+name: Emepheral Test
+on: 
+  workflow_dispatch:
+jobs:
+  hello:
+    runs-on: self-hosted
+    steps:
+      - run: echo "Hello"
+      - run: sleep 5
+      - run: echo "Finished"
